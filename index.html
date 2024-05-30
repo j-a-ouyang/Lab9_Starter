@@ -69,39 +69,132 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id = 'console-log'>Console Log</button>
+      <button id = 'console-error'>Console Error</button>
+      <button id = 'console-count'>Console Count</button>
+      <button id = 'console-warn'>Console Warn</button>
+      <button id = 'console-assert'>Console Assert</button>
+      <button id = 'console-clear'>Console Clear</button>
+      <button id = 'console-dir'>Console Dir</button>
+      <button id = 'console-dir-xml'>Console dirxml</button>
+      <button id = 'console-group-start'>Console Group Start</button>
+      <button id = 'console-group-end'>Console Group End</button>
+      <button id = 'console-table'>Console Table</button>
+      <button id = 'start-timer'>Start Timer</button>
+      <button id = 'end-timer'>End Timer</button>
+      <button id = 'console-trace'>Console Trace</button>
+      <button id = 'global-error'>Trigger a Global Error</button>
     </section>
   </main>
 
   <script>
     let form = document.querySelector('form');
+    let result;
     form.addEventListener('submit', e => {
       e.preventDefault();
       let output = document.querySelector('output');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      result =  eval(`${firstNum} ${operator} ${secondNum}`);
+      output.innerHTML = result;
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    const consoleLogButton = document.getElementById('console-log');
+    const consoleErrorButton = document.getElementById('console-error');
+    const consoleCount = document.getElementById('console-count');
+    const consoleWarn = document.getElementById('console-warn');
+    const consoleAssert = document.getElementById('console-assert');
+    const consoleClear = document.getElementById('console-clear');
+    const consoleDir = document.getElementById('console-dir');
+    const consoleDirXML = document.getElementById('console-dir-xml');
+    const consoleGroupStart = document.getElementById('console-group-start');
+    const consoleGroupEnd = document.getElementById('console-group-end');
+    const consoleTable = document.getElementById('console-table');
+    const startTimer = document.getElementById('start-timer');
+    const endTimer = document.getElementById('end-timer');
+    const consoleTrace = document.getElementById('console-trace');
+    const globalErrorButton = document.getElementById('global-error');
+
+    consoleLogButton.addEventListener('click', function(){
+      console.log('Creating console log');
+    });
+
+    consoleErrorButton.addEventListener('click', function(){
+      console.error('Here is your error');
+    });
+
+    consoleCount.addEventListener('click', function(){
+      console.count();
+    });
+
+    consoleWarn.addEventListener('click', function(){
+      console.warn('WARNING');
+    });
+
+    consoleAssert.addEventListener('click', function(){
+      let notTrue = (result > 0);
+      console.assert(notTrue, 'Output is NOT greater than 0');
+    });
+
+    consoleClear.addEventListener('click', function(){
+      console.clear();
+    });
+
+    consoleDir.addEventListener('click', function(){
+      console.dir(consoleDir);
+    });
+
+    consoleDirXML.addEventListener('click', function(){
+      console.dirxml(consoleDirXML);
+    });
+
+    consoleGroupStart.addEventListener('click', function(){
+      console.log('Adding indent');
+      console.group('New Layer');
+      console.log('Future messages will now be sent at this indentation level');
+    });
+
+    consoleGroupEnd.addEventListener('click', function(){
+      console.groupEnd();
+      console.log('Future messages will now be sent at this indentation level');
+    });
+
+    consoleTable.addEventListener('click', function(){
+      console.table(["I like CSE", "I like math"]);
+    });
+
+    startTimer.addEventListener('click', function(){
+      console.time();
+      console.log('Starting timer');
+    });
+
+    endTimer.addEventListener('click', function(){
+      console.timeEnd();
+    });
+
+    consoleTrace.addEventListener('click', function(){
+      function three(){
+        function two(){
+          function one(){
+            console.trace();
+          }
+          one();
+        }
+        two();
+      }
+      three();
+    });
+
+    globalErrorButton.addEventListener('click', function(){
+      error 
+    });
+
   </script>
 </body>
 
