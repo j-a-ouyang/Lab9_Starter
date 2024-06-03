@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "de50954f71234daba1730602f4bcc5c2"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <script>
     let form = document.querySelector('form');
     let result;
@@ -120,6 +128,13 @@
     const endTimer = document.getElementById('end-timer');
     const consoleTrace = document.getElementById('console-trace');
     const globalErrorButton = document.getElementById('global-error');
+
+    class SuperError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "Super Error";
+      }
+    }
 
     consoleLogButton.addEventListener('click', function(){
       console.log('Creating console log');
@@ -192,7 +207,15 @@
     });
 
     globalErrorButton.addEventListener('click', function(){
-      error 
+    try{
+      wheresTheColon
+    }  
+    
+    catch(err){
+      console.log("Super Error Triggered!!!");
+      throw new SuperError("SuperError");
+    }
+
     });
 
   </script>
